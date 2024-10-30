@@ -75,7 +75,7 @@ jobs:
 
       - name: Rename APK file
         run: |
-          mv app-debug.apk custom-app-debug.apk /custom
+          mv app-debug.apk custom-app-debug.apk 
           ls 
 
       - name: Send APK to Telegram
@@ -84,9 +84,9 @@ jobs:
         run: |
           curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendDocument" \
             -F chat_id="-1002327390277" \
-            -F message_thread_id="30" \ // custom
+            -F message_thread_id="30" \
             -F document=@"custom-app-debug.apk" \
-            -F caption="App by @robokinc - ${{ github.event.head_commit.message }} by ${{ github.actor }}" // custom
+            -F caption="App by @robokinc - ${{ github.event.head_commit.message }} by ${{ github.actor }}" 
 ```
 
 #
