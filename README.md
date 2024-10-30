@@ -172,7 +172,14 @@ jobs:
             curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendDocument" \
               -F chat_id="-1002327390277" \
               -F message_thread_id="30" \
-              -F document=@"$part" \
-              -F caption="Part of the app @robokinc - To reassemble: use 'cat custom-app-debug-part-* > custom-app-debug.apk'" // atention
+              -F document=@"$part"
           done
+
+      - name: Send final recommendation message
+        if: success()
+        run: |
+          curl -X POST "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -F chat_id="-1002327390277" \
+            -F message_thread_id="30" \
+            -F text="All APK parts have been sent by @robokinc. To reassemble, use the command: ```bash\ncat custom-app-debug-part-* > custom-app-debug.apk```."
 ```
