@@ -39,8 +39,8 @@ jobs:
       - name: Set up JDK 20
         uses: actions/setup-java@v4
         with:
-          java-version: '20' //default
-          distribution: 'oracle' /default
+          java-version: '20' // default
+          distribution: 'oracle' // default
           cache: gradle
 
       - name: Grant execute permission for gradlew
